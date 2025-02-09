@@ -1,4 +1,13 @@
 import datetime, logging
+import sympy as sp
+
+def parser(formula):
+    x = sp.symbols("x")
+    expression = sp.sympify(formula)
+    lambda_conversion = sp.lambdify(x, expression, "numpy")
+    primed = sp.lambdify(x, sp.diff(expression, x), "numpy")
+
+    return lambda_conversion, primed
 
 def bisection_protocols(f, a: [int, float], b: [int, float], tolerance: [float]):
     assert(isinstance(a, (int, float)))
