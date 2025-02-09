@@ -2,6 +2,7 @@ import datetime, logging
 import sympy as sp
 
 def parser(formula):
+    print("Parser in progress...")
     x = sp.symbols("x")
     expression = sp.sympify(formula)
     lambda_conversion = sp.lambdify(x, expression, "numpy")
@@ -14,6 +15,8 @@ def bisection_protocols(f, a: [int, float], b: [int, float], tolerance: [float])
     assert(isinstance(b, (int, float)))
     assert(type(tolerance) == float)
     bisection_start = datetime.datetime.now()
+    print("Bijection calculations in progress...")
+
     # - Failsafe 1 -
     if f(a) * f(b) > 0:
         return None, 0, []
@@ -46,6 +49,7 @@ def newtons_method(f, df, x_0, tolerance: float, max_iterations: int):
     assert(type(max_iterations) == int)
     # - Time start timer -
     newtons_start = datetime.datetime.now()
+    print("Newtons method calculations in progress...")
     # - Failsafe 1 -
     if tolerance < 0:
         logging.error(f"Tolerance inputted: {tolerance}")

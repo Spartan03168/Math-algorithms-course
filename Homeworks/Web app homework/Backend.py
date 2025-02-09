@@ -1,4 +1,4 @@
-import logging
+import logging, datetime
 import numpy as np
 import math
 import streamlit as st
@@ -26,4 +26,12 @@ class Backend_deployment():
 
         if self.testing_mode != 1:
             # - Streamlit deployment -
-            logging.info("Testing mode inactive")
+            logging.info("\nTesting mode inactive\n")
+        elif  self.testing_mode == 1:
+            print("--------------------")
+            print(" - Bijection protocols results - ")
+            print(f"Bijection point: {bijection_point}\nInteration: {bij_iterations_used}\nErrors: {bij_errors}")
+            print("--------------------")
+            print(" - Newtons method - ")
+            print(f"Iterations: {nm_iterations_used}\nErrors tracked: {nm_errors}")
+            print("--------------------")
