@@ -1,4 +1,6 @@
-import logging, datetime
+import datetime
+import streamlit as st
+
 from Functionalities import parser, bisection_protocols, newtons_method
 
 class Backend_deployment():
@@ -12,10 +14,17 @@ class Backend_deployment():
         self.testing_mode = testing_mode
     def deploy(self):
         if self.deployment_clearance != 1:
-            logging.info("Deployment bricked. Manually reactivate.")
-            quit("Deployment bricked. Manually reactivate.")
+            if self.testing_mode == 1:
+                quit("Deployment bricked. Manually reactivate.")
+            else:
+                st.error("Deployment bricked. Manually reactivate.")
 
         extracted_function, derived_function = parser(self.equation, testing_mode=self.testing_mode)
+        if extracted_function is None or derived_function is None:
+            if self.testing_mode == 1:
+                raise ValueError("Equation parsing failed. Cannot proceed with calculations.")
+            else:
+                st.error("Equation parsing failed. Cannot proceed with calculations.")
         # -> Bijection <-
         bijection_point, bij_iterations_used, bij_errors = bisection_protocols(extracted_function, self.a, self.b, tolerance=self.tolerance, testing_mode=self.testing_mode)
         # -> Newtons method <-
