@@ -34,14 +34,12 @@ def bisection_protocols(f, a: [int, float], b: [int, float], tolerance: [float],
     assert(type(tolerance) == float)
     bisection_start = datetime.datetime.now()
     print("Bijection calculations in progress...")
-
     # - Failsafe 1 -
     if f(a) * f(b) > 0:
         if testing_mode == 1:
             print(f"Invalid interval: f(a) and f(b) must have opposite signs.")
         else:
-            st.error(
-                "Error: Bisection method requires f(a) and f(b) to have opposite signs. Please enter a valid interval.")
+            st.error("Error: Bisection method requires f(a) and f(b) to have opposite signs. Please enter a valid interval.")
         return None, 0, []
     # - Failsafe 2 -
     if tolerance < 0:
