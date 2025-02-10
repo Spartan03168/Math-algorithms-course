@@ -4,7 +4,7 @@ from Backend import Backend_deployment
 
 # - Behavior mods -
 developer_mode = 1
-testing_mode = 0
+testing_mode = 1
 web_deployment = 1
 
 # ----> Web deployment <----
