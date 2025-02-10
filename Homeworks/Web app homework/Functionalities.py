@@ -9,16 +9,30 @@ def parser(formula, testing_mode):
             st.error("Error: Please enter a valid function before running the solver.")
         elif testing_mode == 1:
             raise ValueError("Equation is empty. Please enter a valid function.")
+        return None, None
     else:
         formula = re.sub(r"(\d)([a-zA-Z])", r"\1*\2", formula.strip())
 
     print("Parser in progress...")
-    x = sp.symbols("x")
-    expression = sp.sympify(formula)
-    lambda_conversion = sp.lambdify(x, expression, "numpy")
-    primed = sp.lambdify(x, sp.diff(expression, x), "numpy")
+    try:
+        x_variable = ""
+        if "x" in formula.strip():
+            x_variable += "x"
+        elif "X" in formula.strip():
+            x_variable += "X"
 
-    return lambda_conversion, primed
+        x = sp.symbols("x")
+        expression = sp.sympify(formula)
+        lambda_conversion = sp.lambdify(x, expression, "numpy")
+        primed = sp.lambdify(x, sp.diff(expression, x), "numpy")
+        return lambda_conversion, primed
+    except Exception as e:
+        error_message = f"Failed to parse equation: '{formula}'. Error: {e}"
+        if testing_mode != 1:
+            st.error(error_message)
+        elif testing_mode == 1:
+            print(error_message)
+        raise ValueError(error_message)
 
 def bisection_protocols(f, a: [int, float], b: [int, float], tolerance: [float]):
     assert(isinstance(a, (int, float)))
