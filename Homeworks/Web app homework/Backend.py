@@ -1,7 +1,4 @@
 import logging, datetime
-import numpy as np
-import math
-import streamlit as st
 from Functionalities import parser, bisection_protocols, newtons_method
 
 class Backend_deployment():
