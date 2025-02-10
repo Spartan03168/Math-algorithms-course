@@ -27,7 +27,10 @@ class Backend_deployment():
         if self.testing_mode != 1:
             # - Streamlit deployment -
             logging.info("\nTesting mode inactive\n")
+
         elif  self.testing_mode == 1:
+            # - Streamlit disabled -
+            testing_mode_start = datetime.datetime.now()
             print("--------------------")
             print(" - Bijection protocols results - ")
             print(f"Bijection point: {bijection_point}\nInteration: {bij_iterations_used}\nErrors: {bij_errors}")
@@ -35,3 +38,5 @@ class Backend_deployment():
             print(" - Newtons method - ")
             print(f"Iterations: {nm_iterations_used}\nErrors tracked: {nm_errors}")
             print("--------------------")
+            testing_mode_end = datetime.datetime.now() - testing_mode_start
+            print(f"Processing time: {testing_mode_end}")
