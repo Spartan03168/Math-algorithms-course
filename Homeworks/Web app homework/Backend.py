@@ -18,7 +18,7 @@ class Backend_deployment():
             logging.info("Deployment bricked. Manually reactivate.")
             quit("Deployment bricked. Manually reactivate.")
 
-        extracted_function, derived_function = parser(self.equation)
+        extracted_function, derived_function = parser(self.equation, testing_mode=self.testing_mode)
         # -> Bijection <-
         bijection_point, bij_iterations_used, bij_errors = bisection_protocols(extracted_function, self.a, self.b, tolerance=self.tolerance)
         # -> Newtons method <-
