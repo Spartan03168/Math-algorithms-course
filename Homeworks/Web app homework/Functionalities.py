@@ -28,7 +28,7 @@ def parser(formula, testing_mode):
             print(error_message)
         raise ValueError(error_message)
 
-def bisection_protocols(f, a: [int, float], b: [int, float], tolerance: [float]):
+def bisection_protocols(f, a: [int, float], b: [int, float], tolerance: [float], testing_mode: int):
     assert(isinstance(a, (int, float)))
     assert(isinstance(b, (int, float)))
     assert(type(tolerance) == float)
@@ -37,11 +37,19 @@ def bisection_protocols(f, a: [int, float], b: [int, float], tolerance: [float])
 
     # - Failsafe 1 -
     if f(a) * f(b) > 0:
+        if testing_mode == 1:
+            print(f"Invalid interval: f(a) and f(b) must have opposite signs.")
+        else:
+            st.error(
+                "Error: Bisection method requires f(a) and f(b) to have opposite signs. Please enter a valid interval.")
         return None, 0, []
     # - Failsafe 2 -
     if tolerance < 0:
-        logging.error(f"Tolerance inputted: {tolerance}")
-        logging.error("Tolerance is in the negatives. Negative tolerance is incompatible.")
+        if testing_mode == 1:
+            print(f"Invalid interval: f(a) and f(b) must have opposite signs.")
+        else:
+            st.error(
+                "Error: Bisection method requires f(a) and f(b) to have opposite signs. Please enter a valid interval.")
         return None, 0, []
 
     iterations = 0
@@ -58,10 +66,13 @@ def bisection_protocols(f, a: [int, float], b: [int, float], tolerance: [float])
         iterations += 1
     # -> Return <-
     bisection_end = datetime.datetime.now() - bisection_start
-    logging.info(f"Bisection processing time: {bisection_end}")
+    if testing_mode == 1:
+        pass
+    else:
+        pass
     return (a + b)/2, iterations, errors_tracked
 
-def newtons_method(f, df, x_0, tolerance: float, max_iterations: int):
+def newtons_method(f, df, x_0, tolerance: float, max_iterations: int, testing_mode: int):
     assert(type(x_0) == int or type(x_0) == float)
     assert(type(tolerance) == float)
     assert(type(max_iterations) == int)
@@ -70,6 +81,11 @@ def newtons_method(f, df, x_0, tolerance: float, max_iterations: int):
     print("Newtons method calculations in progress...")
     # - Failsafe 1 -
     if tolerance < 0:
+        if testing_mode == 1:
+            pass
+        else:
+            pass
+
         logging.error(f"Tolerance inputted: {tolerance}")
         logging.error("Tolerance is in the negatives. Negative tolerance is incompatible.")
         return None, 0, []
