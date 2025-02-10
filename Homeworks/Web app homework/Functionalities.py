@@ -15,12 +15,6 @@ def parser(formula, testing_mode):
 
     print("Parser in progress...")
     try:
-        x_variable = ""
-        if "x" in formula.strip():
-            x_variable += "x"
-        elif "X" in formula.strip():
-            x_variable += "X"
-
         x = sp.symbols("x")
         expression = sp.sympify(formula)
         lambda_conversion = sp.lambdify(x, expression, "numpy")
