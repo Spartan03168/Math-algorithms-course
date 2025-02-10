@@ -17,9 +17,9 @@ class Backend_deployment():
 
         extracted_function, derived_function = parser(self.equation, testing_mode=self.testing_mode)
         # -> Bijection <-
-        bijection_point, bij_iterations_used, bij_errors = bisection_protocols(extracted_function, self.a, self.b, tolerance=self.tolerance)
+        bijection_point, bij_iterations_used, bij_errors = bisection_protocols(extracted_function, self.a, self.b, tolerance=self.tolerance, testing_mode=self.testing_mode)
         # -> Newtons method <-
-        x, nm_iterations_used, nm_errors = newtons_method(f=extracted_function,df=derived_function,x_0=self.a, tolerance=self.tolerance, max_iterations=self.iterations)
+        x, nm_iterations_used, nm_errors = newtons_method(f=extracted_function,df=derived_function,x_0=self.a, tolerance=self.tolerance, max_iterations=self.iterations, testing_mode=self.testing_mode)
 
         if  self.testing_mode == 1:
             # - Streamlit disabled -
