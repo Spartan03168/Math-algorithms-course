@@ -1,7 +1,17 @@
-import datetime, logging
+import datetime, logging, re
 import sympy as sp
+import streamlit as st
 
-def parser(formula):
+def parser(formula, testing_mode):
+    # - Valid function failsafe -
+    if not formula.strip():
+        if testing_mode != 1:
+            st.error("Error: Please enter a valid function before running the solver.")
+        elif testing_mode == 1:
+            raise ValueError("Equation is empty. Please enter a valid function.")
+    else:
+        formula = re.sub(r"(\d)([a-zA-Z])", r"\1*\2", formula.strip())
+
     print("Parser in progress...")
     x = sp.symbols("x")
     expression = sp.sympify(formula)
