@@ -64,3 +64,20 @@ for row in matrix:
 print("\nUpdated right hand side vector")
 for row_az2 in results:
     print(row_az2)
+
+# - Backwards substitution -
+solution = [0] * n
+
+# Loop
+for row_mxg4 in range(n - 1, -1, -1):
+    sum = results[row_mxg4]
+    for v in range(row_mxg4 + 1, n):
+        sum -= matrix[row_mxg4][v] * solution[v]
+    solution[row_mxg4] = sum / matrix[row_mxg4][row_mxg4]
+    # > Readouts <
+    print(f"\nSolution after solving for x[{row_mxg4}]")
+    print(solution)
+
+print("\nSolution to vector x")
+for row_AL9L in solution:
+    print(row_AL9L)
