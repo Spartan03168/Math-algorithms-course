@@ -48,6 +48,11 @@ for i in range(n):
         for k in range(i, n):
             matrix[j][k] -= factor * matrix[i][k]
         results[j] -= factor * results[i]
+        # > Elimination updates <
+        print(f"\nMatrix after eliminating column {i + 1}, row {j}")
+        for row_lxr in matrix:
+            print(row_lxr)
+        # > Readout <
         print(f"---\nFactor: {factor}")
         print(f"Row {j} was updated with {i}\n---")
 
