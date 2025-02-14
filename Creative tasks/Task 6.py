@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-theta = np.linspace(0, 2*np.pi, 100)
+theta = np.linspace(0, 2*np.pi, 75)
 r = -16 * (np.sin(theta)**3)
 
 plt.figure(figsize=(7, 7))
