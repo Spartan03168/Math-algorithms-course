@@ -1,0 +1,21 @@
+Documentation notes:
+    - Kaggle dataset name
+        - AGROTS
+        - Link: https://www.kaggle.com/datasets/lauramariacornei/agrots
+    - Description:
+        - AGROTS is a real dataset, containing information concerning a series of environmental factors, collected by IoT devices for a period of approximately 2 years.
+        - The dataset was previously processed by eliminating noises caused by measurement errors, resampling data by hour and performing a linear interpolation to fill N/A values.
+    - Features:
+        - Timestamp - timestamp indicating the date and hour when the information was collected
+        - AirPressure - atmospheric pressure
+        - AirTemperatureA - air temperature (measured in a point A)
+        - AirHumidity - air humidity
+        - AirTemperatureB - air temperature (measured in a point B)
+        - V450, B500, G550, Y570, O600, R650 - luminosity associated to each color (violet, blue, green, yellow, orange and red)
+        - SoilTemperatureA - soil temperature (measured in a point A)
+        - SoilTemperatureB - soil temperature (measured in a point B)
+        - TotalLuminosity - total luminosity (measured without using a color filter)
+    Plan:
+        - Apply interpolation to predict air pressure using air temperature A
+        - Apply interpolation to predict air pressure using soil temperature B
+        - Apply interpolation to predict air pressure using air humidity
