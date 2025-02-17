@@ -57,7 +57,7 @@ while True:
     x_val = float(val)
     for name, poly in methods.items():
         if name == 'Parametric':
-            t_val = x_val  # For parametric, assume x_val is actually t
+            t_val = x_val
             result = (poly[0][0].evalf(subs={Symbol('t'): t_val}), poly[1][0].evalf(subs={Symbol('t'): t_val}))
         else:
             result = poly.evalf(subs={Symbol('x'): x_val})
