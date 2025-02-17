@@ -49,3 +49,16 @@ for name, poly in methods.items():
     plt.plot(x_vals, y_vals, label=name)
 plt.legend()
 plt.show()
+
+while True:
+    val = input("Calculate polynomial value at x (press enter to quit): ")
+    if not val:
+        break
+    x_val = float(val)
+    for name, poly in methods.items():
+        if name == 'Parametric':
+            t_val = x_val  # For parametric, assume x_val is actually t
+            result = (poly[0][0].evalf(subs={Symbol('t'): t_val}), poly[1][0].evalf(subs={Symbol('t'): t_val}))
+        else:
+            result = poly.evalf(subs={Symbol('x'): x_val})
+        print(f"{name} interpolation at x={x_val}: {result}")
