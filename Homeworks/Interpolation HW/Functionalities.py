@@ -1,6 +1,5 @@
 import numpy as np
 import sympy as sp
-import matplotlib.pyplot as plt
 from Converters import numpy_conversion
 
 def points_file_reader(file_name: str):
