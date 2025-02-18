@@ -19,3 +19,5 @@ Documentation notes:
         - Apply interpolation to predict air pressure using air temperature A
         - Apply interpolation to predict air pressure using soil temperature B
         - Apply interpolation to predict air pressure using air humidity
+    Updated plan:
+        - Everything from the first plan but use linear regression
