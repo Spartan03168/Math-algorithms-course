@@ -6,7 +6,10 @@ from sklearn.linear_model import LinearRegression
 
 def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, features: str, target: str, developer_mode: int):
     assert(isinstance(data_injection, (list, np.ndarray)))
+    assert(type(features) == str)
+    assert(type(target) == str)
     assert(type(developer_mode) == int)
+
     if developer_mode == 1:
         print("---------\nLinear regression deployed")
         print(f"Features: {features}\nTarget: {target}\n---------")
@@ -37,3 +40,8 @@ def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, f
     # - Return statements -
     return projection, mae_tracked, mse_tracked, r2_tracked, end
 
+def polynomial_regression_projector(data_injection: [list, np.ndarray], source_DF, features: str, target: str, developer_mode: int):
+    assert (isinstance(data_injection, (list, np.ndarray)))
+    assert (type(features) == str)
+    assert (type(target) == str)
+    assert (type(developer_mode) == int)
