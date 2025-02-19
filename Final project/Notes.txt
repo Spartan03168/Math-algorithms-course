@@ -21,3 +21,6 @@ Documentation notes:
         - Apply interpolation to predict air pressure using air humidity
     Updated plan:
         - Everything from the first plan but use linear regression
+
+Research goal:
+Predict air pressure using air temperature A, air temperature B, air humidity.
