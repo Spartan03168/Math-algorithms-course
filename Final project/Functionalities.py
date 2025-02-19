@@ -33,7 +33,7 @@ def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, f
     mae_tracked = mean_absolute_error(y_test, projection)
     r2_tracked = r2_score(y_test, projection)
     if developer_mode == 1:
-        print("Accuracy diagnostics calculated")
+        print("Accuracy diagnostics calculated\n")
     # - Return statements -
     return projection, mae_tracked, mse_tracked, r2_tracked, end
 
