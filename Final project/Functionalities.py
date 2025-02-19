@@ -11,7 +11,7 @@ def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, f
     # - Model initialization -
     model_applied = LinearRegression()
     # - x train, x test, y train, y test splitting -
-    X = source_DF[features]
+    X = source_DF[[features]]
     y = source_DF[target]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     # - Deploy forecast -
