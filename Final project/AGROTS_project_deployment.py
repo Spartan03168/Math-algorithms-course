@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
+import seaborn as sns
 from Functionalities import linear_regression_projector
 
 # - Behaviour modifiers -
@@ -13,32 +14,69 @@ file_path = "AGROTSDatasetFinal.csv"
 if file_path == 0:
     raise LookupError("File path cannot be found as the field is empty")
 source_dataframe = pd.read_csv(fr"{file_path}")
+print(f"NANs detected: {source_dataframe.isnull().sum()}\n")
 if developer_mode == 1:
     print("Dataframe info:")
     print(source_dataframe.info())
-    print()
+    print(source_dataframe.head(15))
+    print(f"\nDataframe shape: {source_dataframe.shape}")
+    print(f"Number of rows: {source_dataframe.shape[0]}, number of columns: {source_dataframe.shape[1]}")
 
 # - Prep work -
-time_stamps = source_dataframe["Timestamp"].to_numpy()
 air_pressure_data = source_dataframe["AirPressure"].to_numpy()
 air_temperature_A = source_dataframe["AirTemperatureA"].to_numpy()
 air_temperature_B = source_dataframe["AirTemperatureB"].to_numpy()
 air_humidity = source_dataframe["AirHumidity"].to_numpy()
 
+# ---> Charting process <---
+# - Air temperature A VS air pressure
+plt.scatter(air_temperature_A, air_pressure_data)
+plt.xlabel("Air temperature A")
+plt.ylabel("Air pressure")
+plt.title("Air pressure VS Air temperature A")
+plt.show()
+plt.close()
+# - Air temperature B VS air pressure
+plt.scatter(air_temperature_B, air_pressure_data)
+plt.xlabel("Air temperature B")
+plt.ylabel("Air pressure")
+plt.title("Air pressure VS Air temperature B")
+plt.show()
+plt.close()
+# - Air humidity VS air pressure
+plt.scatter(air_humidity, air_pressure_data)
+plt.xlabel("Air humidity")
+plt.ylabel("Air pressure")
+plt.title("Air pressure VS Air humidity")
+plt.show()
+plt.close()
+# ---> Correleation coeficients <---
+process_data = pd.DataFrame({
+    "Air pressure": air_pressure_data,
+    "Air temperature A": air_temperature_A,
+    "Air temperature B": air_temperature_B,
+    "Air humidity": air_humidity
+})
+corr_matrix = process_data.corr()
+print("\nCorrelation matrix:\n")
+print(corr_matrix)
+plt.figure(figsize=(10,8))
+sns.heatmap(corr_matrix,annot=True,cmap='coolwarm',fmt='.4f',linewidths=0.5)
+plt.title("Correlation matrix heat map")
+plt.show()
+# --------------------------
+
 air_temp_A_processing_df = pd.DataFrame({
-    "Time stamps": time_stamps,
     "Air pressure": air_pressure_data,
     "Air temperature A": air_temperature_A
     })
 
 air_temp_B_processing_df = pd.DataFrame({
-    "Time stamps": time_stamps,
     "Air pressure": air_pressure_data,
     "Air temperature B": air_temperature_B
     })
 
 air_humidity_processing_df = pd.DataFrame({
-    "Time stamps": time_stamps,
     "Air pressure": air_pressure_data,
     "Air humidity": air_humidity
     })
