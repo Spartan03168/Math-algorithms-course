@@ -89,5 +89,9 @@ if developer_mode == 1:
     print()
 
 project_end = datetime.datetime.now() - project_start
+# ---> Charting process <---
+
+
+# ---> Document the processing time <---
 if developer_mode == 1:
     print(f"Total processing time: {project_end}")
