@@ -6,7 +6,7 @@ import seaborn as sns
 from Functionalities import linear_regression_projector, polynomial_regression_projector
 
 # - Autodownload folder path -
-dl_path = "C:\Users\Tomy\PycharmProjects\Math_algorithm_work\Final project\Saved_downloads\Recent"
+dl_path = r"C:\Users\Tomy\PycharmProjects\Math_algorithm_work\Final project\Saved_downloads\Recent"
 os.chdir(dl_path)
 # - Behaviour modifiers -
 developer_mode = 1
@@ -14,7 +14,7 @@ deploy_switch = 0
 # -----------------------
 project_start = datetime.datetime.now()
 
-file_path = "AGROTSDatasetFinal.csv"
+file_path = r"C:\Users\Tomy\PycharmProjects\Math_algorithm_work\Final project\AGROTSDatasetFinal.csv"
 if file_path == 0:
     raise LookupError("File path cannot be found as the field is empty")
 source_dataframe = pd.read_csv(fr"{file_path}")
