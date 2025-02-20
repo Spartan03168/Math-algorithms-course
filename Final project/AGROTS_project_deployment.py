@@ -91,10 +91,10 @@ if deploy_switch == 1:
         "Model": [air_temp_A_model]
         })
     if developer_mode == 1:
-        print()
+        print("<----->")
         for x_11, y_11 in air_temp_A_metrics.items():
             print(f"{x_11}: {y_11}")
-        print()
+        print("<----->")
 
     # - Air temperature B -
     air_temp_B_forecast, air_temp_B_test_data, air_temp_B_mae, air_temp_B_mse, air_temp_B_r2, air_temp_B_exec_time, air_temp_B_model = linear_regression_projector(source_DF=source_dataframe, features=features,target="AirTemperatureB", developer_mode=developer_mode)
@@ -108,10 +108,10 @@ if deploy_switch == 1:
         "Model": [air_temp_A_model]
         })
     if developer_mode == 1:
-        print()
+        print("<----->")
         for x_12, y_12 in air_temp_B_metrics.items():
             print(f"{x_12}: {y_12}")
-        print()
+        print("<----->")
 
     # - Air humidity -
     air_humidity_forecast, air_humidity_test_data, air_humidity_mae, air_humidity_mse, air_humidity_r2, air_humidity_exec_time, air_humidity_model = linear_regression_projector(source_DF=source_dataframe, features=features, target="AirHumidity", developer_mode=developer_mode)
@@ -125,10 +125,10 @@ if deploy_switch == 1:
         "Model": [air_humidity_model]
         })
     if developer_mode == 1:
-        print()
+        print("<----->")
         for x_10, y_10 in air_humidity_metrics.items():
             print(f"{x_10}: {y_10}")
-        print()
+        print("<----->")
 
 project_end = datetime.datetime.now() - project_start
 # ---> Document the processing time <---
