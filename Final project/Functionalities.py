@@ -23,13 +23,11 @@ def linear_regression_projector(source_DF, features: [list, np.ndarray], target:
     if developer_mode == 1:
         print("Model initiated")
         print(f"Model details:\n{model_applied}")
-    # - x train, x test, y train, y test splitting(Notes: Use all 3 features) -
+    # - x train, x test, y train, y test splitting -
     X = source_DF[features]
     y = source_DF[target]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     if developer_mode == 1:
-        print(f"X: {X}")
-        print(f"y: {y}")
         print("Data splitting completed")
     # - Deploy forecast -
     model_applied.fit(X_train, y_train)
@@ -70,10 +68,14 @@ def polynomial_regression_projector(source_DF, features: [list, np.ndarray],
     # - X and y splitting -
     X = source_DF[features]
     y = source_DF[target]
+    if developer_mode == 1:
+        print("Data splitting completed")
     # - Model declaration -
     degrees = 2
     model = make_pipeline(PolynomialFeatures(degrees), LinearRegression())
     model.fit(X,y)
+    # - Model diagnostics -
+
     # - Forecast mechanism -
     forecast_data = numpy_conversion(model.predict(X))
     # ---------
