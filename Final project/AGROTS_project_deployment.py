@@ -72,10 +72,11 @@ plt.figure(figsize=(10,8))
 sns.heatmap(corr_matrix,annot=True,cmap='coolwarm',fmt='.4f',linewidths=0.5)
 plt.title("Correlation matrix heat map")
 plt.show()
+plt.close()
 # --------------------------
 # ----> Deployment <----
 # - Air temperature A -
-air_temp_A_forecast, air_temp_A_test_data, air_temp_A_mae, air_temp_A_mse, air_temp_A_r2, air_temp_A_exec_time, air_temp_A_model = linear_regression_projector(source_DF=source_dataframe, features=features,target="AirPressure",developer_mode=developer_mode)
+air_temp_A_forecast, air_temp_A_test_data, air_temp_A_mae, air_temp_A_mse, air_temp_A_r2, air_temp_A_exec_time, air_temp_A_model = linear_regression_projector(source_DF=source_dataframe, features=features,target="AirTemperatureA",developer_mode=developer_mode)
 
 air_temp_A_metrics = pd.DataFrame({
     "MAE": [air_temp_A_mae],
@@ -90,7 +91,7 @@ if developer_mode == 1:
     print()
 
 # - Air temperature B -
-air_temp_B_forecast, air_temp_B_test_data, air_temp_B_mae, air_temp_B_mse, air_temp_B_r2, air_temp_B_exec_time, air_temp_B_model = linear_regression_projector(source_DF=source_dataframe, features=features,target="AirPressure", developer_mode=developer_mode)
+air_temp_B_forecast, air_temp_B_test_data, air_temp_B_mae, air_temp_B_mse, air_temp_B_r2, air_temp_B_exec_time, air_temp_B_model = linear_regression_projector(source_DF=source_dataframe, features=features,target="AirTemperatureB", developer_mode=developer_mode)
 
 air_temp_B_metrics = pd.DataFrame({
     "Column used:": "Air temperature B",
@@ -106,7 +107,7 @@ if developer_mode == 1:
     print()
 
 # - Air humidity -
-air_humidity_forecast, air_humidity_test_data, air_humidity_mae, air_humidity_mse, air_humidity_r2, air_humidity_exec_time, air_humidity_model = linear_regression_projector(source_DF=source_dataframe, features=features, target="AirPressure", developer_mode=developer_mode)
+air_humidity_forecast, air_humidity_test_data, air_humidity_mae, air_humidity_mse, air_humidity_r2, air_humidity_exec_time, air_humidity_model = linear_regression_projector(source_DF=source_dataframe, features=features, target="AirHumidity", developer_mode=developer_mode)
 
 air_humidity_metrics = pd.DataFrame({
     "Column used:": "Air humidity",
