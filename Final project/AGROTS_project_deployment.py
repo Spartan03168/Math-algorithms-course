@@ -92,7 +92,8 @@ if deploy_switch == 1:
         })
     if developer_mode == 1:
         print()
-        print(air_temp_A_metrics)
+        for x_11, y_11 in air_temp_A_metrics.items():
+            print(f"{x_11}: {y_11}")
         print()
 
     # - Air temperature B -
@@ -108,7 +109,8 @@ if deploy_switch == 1:
         })
     if developer_mode == 1:
         print()
-        print(air_temp_B_metrics)
+        for x_12, y_12 in air_temp_B_metrics.items():
+            print(f"{x_12}: {y_12}")
         print()
 
     # - Air humidity -
@@ -124,7 +126,8 @@ if deploy_switch == 1:
         })
     if developer_mode == 1:
         print()
-        print(air_humidity_metrics)
+        for x_10, y_10 in air_humidity_metrics.items():
+            print(f"{x_10}: {y_10}")
         print()
 
 project_end = datetime.datetime.now() - project_start
