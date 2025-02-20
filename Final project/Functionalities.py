@@ -3,6 +3,8 @@ import datetime
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import PolynomialFeatures
 
 def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray], target: str, developer_mode: int):
     assert(isinstance(data_injection, (list, np.ndarray)))
@@ -47,15 +49,35 @@ def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, f
     # - Return statements -
     return projection, y_test, mae_tracked, mse_tracked, r2_tracked, end, model_applied
 
-def polynomial_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray], target: str, developer_mode: int):
-    assert (isinstance(data_injection, (list, np.ndarray)))
-    assert (isinstance(features, (list, np.ndarray)))
-    assert (type(target) == str)
-    assert (type(developer_mode) == int)
+def polynomial_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray],
+                                    target: str, developer_mode: int, forecast_steps: int, poly_degrees: int):
+    assert(isinstance(data_injection, (list, np.ndarray)))
+    assert(isinstance(features, (list, np.ndarray)))
+    assert(type(target) == str)
+    assert(type(developer_mode) == int)
+    assert(type(forecast_steps) == int)
+    assert(type(poly_degrees) == int)
+    assert(poly_degrees > 0)
 
     if developer_mode == 1:
         print("---------\nPolynomial linear regression deployed")
         print(f"Features: {features}\nTarget: {target}\n---------")
     start = datetime.datetime.now()
-
+    # ---------
+    # - X and y splitting -
+    X = source_DF[features]
+    y = source_DF[target]
+    # - Model declaration -
+    degrees = 2
+    model = make_pipeline(PolynomialFeatures(degrees), LinearRegression())
+    model.fit(X,y)
+    # - Forecast mechanism -
+    forecast_data = model.predict(X)
+    # ---------
     end = datetime.datetime.now() - start
+    # - Accuracy tracking diagnostics -
+    mse_tracked = mean_squared_error(y, forecast_data)
+    mae_tracked = mean_absolute_error(y, forecast_data)
+    r2_tracked = r2_score(y, forecast_data)
+    # - Return statements -
+    return forecast_data, mae_tracked, mse_tracked, r2_tracked, end, model
