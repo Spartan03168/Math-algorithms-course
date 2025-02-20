@@ -45,10 +45,17 @@ def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, f
     if developer_mode == 1:
         print("Accuracy diagnostics calculated\n")
     # - Return statements -
-    return projection, mae_tracked, mse_tracked, r2_tracked, end
+    return projection, y_test, mae_tracked, mse_tracked, r2_tracked, end
 
 def polynomial_regression_projector(data_injection: [list, np.ndarray], source_DF, features: str, target: str, developer_mode: int):
     assert (isinstance(data_injection, (list, np.ndarray)))
     assert (type(features) == str)
     assert (type(target) == str)
     assert (type(developer_mode) == int)
+
+    if developer_mode == 1:
+        print("---------\nPolynomial linear regression deployed")
+        print(f"Features: {features}\nTarget: {target}\n---------")
+    start = datetime.datetime.now()
+
+    end = datetime.datetime.now() - start
