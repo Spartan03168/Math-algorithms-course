@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.linear_model import LinearRegression
 
-def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, features: str, target: str, developer_mode: int):
+def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray], target: str, developer_mode: int):
     assert(isinstance(data_injection, (list, np.ndarray)))
     assert(type(features) == str)
     assert(type(target) == str)
@@ -20,7 +20,7 @@ def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, f
         print("Model initiated")
         print(f"Model details:\n{model_applied}")
     # - x train, x test, y train, y test splitting(Notes: Use all 3 features) -
-    X = source_DF[[features]]
+    X = source_DF[features]
     y = source_DF[target]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     if developer_mode == 1:
@@ -45,11 +45,11 @@ def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, f
     if developer_mode == 1:
         print("Accuracy diagnostics calculated\n")
     # - Return statements -
-    return projection, y_test, mae_tracked, mse_tracked, r2_tracked, end
+    return projection, y_test, mae_tracked, mse_tracked, r2_tracked, end, model_applied
 
-def polynomial_regression_projector(data_injection: [list, np.ndarray], source_DF, features: str, target: str, developer_mode: int):
+def polynomial_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray], target: str, developer_mode: int):
     assert (isinstance(data_injection, (list, np.ndarray)))
-    assert (type(features) == str)
+    assert (isinstance(features, (list, np.ndarray)))
     assert (type(target) == str)
     assert (type(developer_mode) == int)
 
