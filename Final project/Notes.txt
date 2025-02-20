@@ -21,6 +21,10 @@ Documentation notes:
         - Apply interpolation to predict air pressure using air humidity
     Updated plan:
         - Everything from the first plan but use linear regression
+    Observed relationships:
+        - Soil temperature A, Air temperature A
+        - Soil temperature B, Air temperature B
+        - All the wavelengths
 
 Research goal:
 Predict air pressure using air temperature A, air temperature B, air humidity.
