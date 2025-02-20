@@ -54,8 +54,10 @@ def polynomial_regression_projector(data_injection: [list, np.ndarray], source_D
     assert(isinstance(data_injection, (list, np.ndarray)))
     assert(isinstance(features, (list, np.ndarray)))
     assert(type(target) == str)
+    assert(len(target) > 0)
     assert(type(developer_mode) == int)
     assert(type(forecast_steps) == int)
+    assert(forecast_steps > 0)
     assert(type(poly_degrees) == int)
     assert(poly_degrees > 0)
 
