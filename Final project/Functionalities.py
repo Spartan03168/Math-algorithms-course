@@ -5,6 +5,7 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures
+from Specialist_code import numpy_conversion
 
 def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray], target: str, developer_mode: int):
     assert(isinstance(data_injection, (list, np.ndarray)))
@@ -47,7 +48,7 @@ def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, f
     if developer_mode == 1:
         print("Accuracy diagnostics calculated\n")
     # - Return statements -
-    return projection, y_test, mae_tracked, mse_tracked, r2_tracked, end, model_applied
+    return numpy_conversion(projection), numpy_conversion(y_test), mae_tracked, mse_tracked, r2_tracked, end, model_applied
 
 def polynomial_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray],
                                     target: str, developer_mode: int, forecast_steps: int, poly_degrees: int):
@@ -74,7 +75,7 @@ def polynomial_regression_projector(data_injection: [list, np.ndarray], source_D
     model = make_pipeline(PolynomialFeatures(degrees), LinearRegression())
     model.fit(X,y)
     # - Forecast mechanism -
-    forecast_data = model.predict(X)
+    forecast_data = numpy_conversion(model.predict(X))
     # ---------
     end = datetime.datetime.now() - start
     # - Accuracy tracking diagnostics -
@@ -82,4 +83,4 @@ def polynomial_regression_projector(data_injection: [list, np.ndarray], source_D
     mae_tracked = mean_absolute_error(y, forecast_data)
     r2_tracked = r2_score(y, forecast_data)
     # - Return statements -
-    return forecast_data, mae_tracked, mse_tracked, r2_tracked, end, model
+    return numpy_conversion(forecast_data), mae_tracked, mse_tracked, r2_tracked, end, model
