@@ -9,8 +9,11 @@ from Specialist_code import numpy_conversion
 
 def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray], target: str, developer_mode: int):
     assert(isinstance(data_injection, (list, np.ndarray)))
-    assert(type(features) == str)
+    assert(len(data_injection) > 0)
+    assert(isinstance(features, (list, np.ndarray)))
+    assert(len(features) > 0)
     assert(type(target) == str)
+    assert(len(target) > 0)
     assert(type(developer_mode) == int)
 
     if developer_mode == 1:
