@@ -73,26 +73,10 @@ sns.heatmap(corr_matrix,annot=True,cmap='coolwarm',fmt='.4f',linewidths=0.5)
 plt.title("Correlation matrix heat map")
 plt.show()
 # --------------------------
-
-air_temp_A_processing_df = pd.DataFrame({
-    "Air pressure": air_pressure_data,
-    "Air temperature A": air_temperature_A
-    })
-
-air_temp_B_processing_df = pd.DataFrame({
-    "Air pressure": air_pressure_data,
-    "Air temperature B": air_temperature_B
-    })
-
-air_humidity_processing_df = pd.DataFrame({
-    "AirPressure": air_pressure_data,
-    "Air humidity": air_humidity
-    })
-
 # ----> Deployment <----
 # - Air temperature A -
-air_temp_A_forecast, air_temp_A_test_data, air_temp_A_mae, air_temp_A_mse, air_temp_A_r2, air_temp_A_exec_time, air_temp_A_model = linear_regression_projector(data_injection=air_temp_A_processing_df["Air temperature A"].to_numpy(),source_DF=source_dataframe,
-                                                                                                                       features=features,target="AirPressure",developer_mode=developer_mode)
+air_temp_A_forecast, air_temp_A_test_data, air_temp_A_mae, air_temp_A_mse, air_temp_A_r2, air_temp_A_exec_time, air_temp_A_model = linear_regression_projector(source_DF=source_dataframe, features=features,target="AirPressure",developer_mode=developer_mode)
+
 air_temp_A_metrics = pd.DataFrame({
     "MAE": [air_temp_A_mae],
     "MSE": [air_temp_A_mse],
@@ -106,8 +90,8 @@ if developer_mode == 1:
     print()
 
 # - Air temperature B -
-air_temp_B_forecast, air_temp_B_test_data, air_temp_B_mae, air_temp_B_mse, air_temp_B_r2, air_temp_B_exec_time, air_temp_B_model = linear_regression_projector(data_injection=air_temp_B_processing_df["Air temperature B"].to_numpy(),source_DF=source_dataframe,
-                                                                                                                                                               features=features,target="AirPressure", developer_mode=developer_mode)
+air_temp_B_forecast, air_temp_B_test_data, air_temp_B_mae, air_temp_B_mse, air_temp_B_r2, air_temp_B_exec_time, air_temp_B_model = linear_regression_projector(source_DF=source_dataframe, features=features,target="AirPressure", developer_mode=developer_mode)
+
 air_temp_B_metrics = pd.DataFrame({
     "Column used:": "Air temperature B",
     "MAE": [air_temp_B_mae],
@@ -122,8 +106,8 @@ if developer_mode == 1:
     print()
 
 # - Air humidity -
-air_humidity_forecast, air_humidity_test_data, air_humidity_mae, air_humidity_mse, air_humidity_r2, air_humidity_exec_time, air_humidity_model = linear_regression_projector(data_injection=air_humidity_processing_df["Air humidity"].to_numpy(), source_DF=source_dataframe,
-                                                                                                                                                                             features=features, target="AirPressure", developer_mode=developer_mode)
+air_humidity_forecast, air_humidity_test_data, air_humidity_mae, air_humidity_mse, air_humidity_r2, air_humidity_exec_time, air_humidity_model = linear_regression_projector(source_DF=source_dataframe, features=features, target="AirPressure", developer_mode=developer_mode)
+
 air_humidity_metrics = pd.DataFrame({
     "Column used:": "Air humidity",
     "MAE": [air_humidity_mae],

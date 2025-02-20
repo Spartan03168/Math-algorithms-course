@@ -7,9 +7,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures
 from Specialist_code import numpy_conversion
 
-def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray], target: str, developer_mode: int):
-    assert(isinstance(data_injection, (list, np.ndarray)))
-    assert(len(data_injection) > 0)
+def linear_regression_projector(source_DF, features: [list, np.ndarray], target: str, developer_mode: int):
     assert(isinstance(features, (list, np.ndarray)))
     assert(len(features) > 0)
     assert(type(target) == str)
@@ -53,9 +51,8 @@ def linear_regression_projector(data_injection: [list, np.ndarray], source_DF, f
     # - Return statements -
     return numpy_conversion(projection), numpy_conversion(y_test), mae_tracked, mse_tracked, r2_tracked, end, model_applied
 
-def polynomial_regression_projector(data_injection: [list, np.ndarray], source_DF, features: [list, np.ndarray],
+def polynomial_regression_projector(source_DF, features: [list, np.ndarray],
                                     target: str, developer_mode: int, forecast_steps: int, poly_degrees: int):
-    assert(isinstance(data_injection, (list, np.ndarray)))
     assert(isinstance(features, (list, np.ndarray)))
     assert(type(target) == str)
     assert(len(target) > 0)
