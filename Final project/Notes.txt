@@ -29,4 +29,8 @@ Documentation notes:
         - Add interpolation calculations as well to the raw form of the data
 
 Research goal:
-Predict air pressure using air temperature A, air temperature B, air humidity.
+Predict air pressure using air temperature A, air temperature B, air humidity, V450, B500, G500.
+Task:
+    - Test these 2 feature sets
+        - [air temperature A, air temperature B, air humidity]
+        - [air temperature A, air temperature B, air humidity, V450, B500, G500]
