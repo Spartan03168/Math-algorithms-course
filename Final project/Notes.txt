@@ -34,3 +34,11 @@ Task:
     - Test these 2 feature sets
         - [air temperature A, air temperature B, air humidity]
         - [air temperature A, air temperature B, air humidity, V450, B500, G500]
+    - Premise:
+        - Compare the difference between both linear regression and polynomial regression for the compressed and full list of y metrics
+        - Apply interpolation as well and show the intermediate points between the raw and forecasted data
+    - Finalization of details in the presentation:
+        - Diagnostic files
+        - Linear regression files
+        - Polynomial regression files
+        - Interpolation between them as well
