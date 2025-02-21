@@ -6,7 +6,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.linear_model import LinearRegression
-from Functionalities import linear_regression_projector
+from Functionalities import linear_regression_projector, polynomial_regression_projector
 
 # - Autodownload folder path -
 dl_path = r"C:\Users\Tomy\PycharmProjects\Math_algorithm_work\Final project\Saved_downloads\Recent"
@@ -130,10 +130,14 @@ if deploy_switch == 1:
     os.chdir(baseline_path)
     baseline_projection, baseline_y_test, baseline_mae_tracked, baseline_mse_tracked, baseline_r2_tracked, baseline_end, baseline_model_applied = linear_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity"],
                                                                                                                                                                               target="AirPressure", developer_mode=developer_mode)
+    baseline_poly_forecast_data, baseline_poly_mae_tracked, baseline_poly_mse_tracked, baseline_poly_r2_tracked, baseline_poly_end, baseline_poly_model = polynomial_regression_projector(source_DF=source_dataframe,features=["AirTemperatureA", "AirTemperatureB", "AirHumidity"],target="AirPressure",
+                                                                                                                                                                                          developer_mode=developer_mode,forecast_steps=30,poly_degrees=2)
     # > Extended <
     os.chdir(extended_path)
     extended_projection, extended_y_test, extended_mae_tracked, extended_mse_tracked, extended_r2_tracked, extended_end, extended_model_applied = linear_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity", "B500", "V450","G550"],
                                                                                                                                                                               target="AirPressure", developer_mode=developer_mode)
+    extended_poly_forecast_data, extended_poly_mae_tracked, extended_poly_mse_tracked, extended_poly_r2_tracked, extended_poly_end, extended_poly_model = polynomial_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity"],target="AirPressure",
+                                                                                                                                                                                          developer_mode=developer_mode, forecast_steps=30, poly_degrees=2)
 
 project_end = datetime.datetime.now() - project_start
 # ---> Document the processing time <---
