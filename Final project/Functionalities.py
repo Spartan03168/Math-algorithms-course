@@ -95,13 +95,11 @@ def polynomial_regression_projector(source_DF, features: [list, np.ndarray],
     linear_model = model.named_steps['linearregression']
     # Extract coefficients and intercept
     coefficients = linear_model.coef_
-    """
     model_diagnostics = pd.DataFrame({
-        "Feature": features,
         "Coefficients": coefficients
         })
-    model_diagnostics.to_csv("Poly_reg_coeffs.csv")
-    """
+    model_diagnostics.to_csv("Poly_reg_coeffs.csv", index=True)
+
     # - Forecast mechanism -
     forecast_data = numpy_conversion(model.predict(X))
     # ---------
