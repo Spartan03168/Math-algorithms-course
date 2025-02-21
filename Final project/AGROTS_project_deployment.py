@@ -1,11 +1,7 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import datetime, os
 import seaborn as sns
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-from sklearn.linear_model import LinearRegression
 from Specialist_code import x_y_charter
 from Functionalities import linear_regression_projector, polynomial_regression_projector
 
@@ -114,6 +110,7 @@ plt.close()
 # --------------------------
 # ----> Deployment <----
 if deploy_switch == 1:
+    print("---- DEPLOYMENT MODE ENABLED ----")
     os.mkdir(folder_names[0])
     if developer_mode == 1:
         print(f"Internal loopback directory: {interal_loop_back_cd}")
@@ -122,11 +119,9 @@ if deploy_switch == 1:
     diagnostics_path = os.path.join(interal_loop_back_cd, folder_names[0])
     baseline_path = os.path.join(diagnostics_path, folder_names[1])
     extended_path = os.path.join(diagnostics_path, folder_names[2])
-
     os.makedirs(diagnostics_path, exist_ok=True)
     os.makedirs(baseline_path, exist_ok=True)
     os.makedirs(extended_path, exist_ok=True)
-
     # > Baseline <
     os.chdir(baseline_path)
     baseline_projection, baseline_y_test, baseline_mae_tracked, baseline_mse_tracked, baseline_r2_tracked, baseline_end, baseline_model_applied = linear_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity"],
@@ -139,6 +134,8 @@ if deploy_switch == 1:
                                                                                                                                                                               target="AirPressure", developer_mode=developer_mode)
     extended_poly_forecast_data, extended_poly_mae_tracked, extended_poly_mse_tracked, extended_poly_r2_tracked, extended_poly_end, extended_poly_model = polynomial_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity", "B500", "V450","G550"],target="AirPressure",
                                                                                                                                                                                           developer_mode=developer_mode, forecast_steps=30, poly_degrees=2)
+else:
+    print("---- DEPLOYMENT MODE DISABLED ----")
 
 project_end = datetime.datetime.now() - project_start
 # ---> Document the processing time <---
