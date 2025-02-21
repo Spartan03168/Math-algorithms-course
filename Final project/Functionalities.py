@@ -40,7 +40,7 @@ def linear_regression_projector(source_DF, features: [list, np.ndarray], target:
         "Feature": features,
         "Coefficients": coeff
         })
-    coef_file.to_csv("Linear_regression_coefficients.csv")
+    coef_file.to_csv("Linear_reg_coefficients.csv")
     # -------------------------
     if developer_mode == 1:
         print(f"Coefficients: {coeff}")
@@ -58,7 +58,7 @@ def linear_regression_projector(source_DF, features: [list, np.ndarray], target:
         "MSE": [mse_tracked],
         "R squared": [r2_tracked]
         })
-    accuracy_tracking.to_csv("Linear_regression_accuracy_documented.csv")
+    accuracy_tracking.to_csv("Linear_reg_accuracy_documented.csv")
     # --------------------------
     if developer_mode == 1:
         print("Accuracy diagnostics calculated\n")
@@ -95,13 +95,13 @@ def polynomial_regression_projector(source_DF, features: [list, np.ndarray],
     linear_model = model.named_steps['linearregression']
     # Extract coefficients and intercept
     coefficients = linear_model.coef_
-    intercept = linear_model.intercept_
+    """
     model_diagnostics = pd.DataFrame({
-        "Features": features,
-        "Coefficients": coefficients,
-        "Intercepts": intercept
+        "Feature": features,
+        "Coefficients": coefficients
         })
-    model_diagnostics.to_csv("Poly_regression_coeffs_and_intercepts.csv")
+    model_diagnostics.to_csv("Poly_reg_coeffs.csv")
+    """
     # - Forecast mechanism -
     forecast_data = numpy_conversion(model.predict(X))
     # ---------
@@ -115,6 +115,6 @@ def polynomial_regression_projector(source_DF, features: [list, np.ndarray],
         "MSE": [mse_tracked],
         "R squared": [r2_tracked]
         })
-    accuracy_tracking.to_csv("Polynomial_regression_accuracy_documented.csv")
+    accuracy_tracking.to_csv("Poly_reg_accuracy_documented.csv")
     # - Return statements -
     return numpy_conversion(forecast_data), mae_tracked, mse_tracked, r2_tracked, end, model
