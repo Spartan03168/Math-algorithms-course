@@ -1,5 +1,6 @@
 import numpy as np
 import datetime
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.linear_model import LinearRegression
@@ -34,6 +35,13 @@ def linear_regression_projector(source_DF, features: [list, np.ndarray], target:
     projection = model_applied.predict(X_test)
     r_squared = model_applied.score(X_train, y_train)
     coeff = model_applied.coef_
+    # - Document coefficients -
+    coef_file = pd.DataFrame({
+        "Feature": features,
+        "Coefficients": coeff
+        })
+    coef_file.to_csv("Coefficients_found.csv")
+    # -------------------------
     if developer_mode == 1:
         print(f"Coefficients: {coeff}")
         print(f"R squared of forecast\n{r_squared}")
@@ -44,6 +52,14 @@ def linear_regression_projector(source_DF, features: [list, np.ndarray], target:
     mse_tracked = mean_squared_error(y_test, projection)
     mae_tracked = mean_absolute_error(y_test, projection)
     r2_tracked = r_squared
+    # - Accuracy documentation -
+    accuracy_tracking = pd.DataFrame({
+        "MAE": [mae_tracked],
+        "MSE": [mse_tracked],
+        "R squared": [r2_tracked]
+        })
+    accuracy_tracking.to_csv("Accuracy_documented.csv")
+    # --------------------------
     if developer_mode == 1:
         print("Accuracy diagnostics calculated\n")
     # - Return statements -
