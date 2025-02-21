@@ -40,7 +40,7 @@ def linear_regression_projector(source_DF, features: [list, np.ndarray], target:
         "Feature": features,
         "Coefficients": coeff
         })
-    coef_file.to_csv("Coefficients_found.csv")
+    coef_file.to_csv("Linear_regression_coefficients.csv")
     # -------------------------
     if developer_mode == 1:
         print(f"Coefficients: {coeff}")
@@ -58,7 +58,7 @@ def linear_regression_projector(source_DF, features: [list, np.ndarray], target:
         "MSE": [mse_tracked],
         "R squared": [r2_tracked]
         })
-    accuracy_tracking.to_csv("Accuracy_documented.csv")
+    accuracy_tracking.to_csv("Linear_regression_accuracy_documented.csv")
     # --------------------------
     if developer_mode == 1:
         print("Accuracy diagnostics calculated\n")
@@ -91,7 +91,17 @@ def polynomial_regression_projector(source_DF, features: [list, np.ndarray],
     model = make_pipeline(PolynomialFeatures(degrees), LinearRegression())
     model.fit(X,y)
     # - Model diagnostics -
-
+    # Extract the trained linear regression model
+    linear_model = model.named_steps['linearregression']
+    # Extract coefficients and intercept
+    coefficients = linear_model.coef_
+    intercept = linear_model.intercept_
+    model_diagnostics = pd.DataFrame({
+        "Features": features,
+        "Coefficients": coefficients,
+        "Intercepts": intercept
+        })
+    model_diagnostics.to_csv("Poly_regression_coeffs_and_intercepts.csv")
     # - Forecast mechanism -
     forecast_data = numpy_conversion(model.predict(X))
     # ---------
@@ -100,5 +110,11 @@ def polynomial_regression_projector(source_DF, features: [list, np.ndarray],
     mse_tracked = mean_squared_error(y, forecast_data)
     mae_tracked = mean_absolute_error(y, forecast_data)
     r2_tracked = r2_score(y, forecast_data)
+    accuracy_tracking = pd.DataFrame({
+        "MAE": [mae_tracked],
+        "MSE": [mse_tracked],
+        "R squared": [r2_tracked]
+    })
+    accuracy_tracking.to_csv("Polynomial_regression_accuracy_documented.csv")
     # - Return statements -
     return numpy_conversion(forecast_data), mae_tracked, mse_tracked, r2_tracked, end, model
