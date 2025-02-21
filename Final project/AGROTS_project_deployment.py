@@ -136,7 +136,7 @@ if deploy_switch == 1:
     os.chdir(extended_path)
     extended_projection, extended_y_test, extended_mae_tracked, extended_mse_tracked, extended_r2_tracked, extended_end, extended_model_applied = linear_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity", "B500", "V450","G550"],
                                                                                                                                                                               target="AirPressure", developer_mode=developer_mode)
-    extended_poly_forecast_data, extended_poly_mae_tracked, extended_poly_mse_tracked, extended_poly_r2_tracked, extended_poly_end, extended_poly_model = polynomial_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity"],target="AirPressure",
+    extended_poly_forecast_data, extended_poly_mae_tracked, extended_poly_mse_tracked, extended_poly_r2_tracked, extended_poly_end, extended_poly_model = polynomial_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity", "B500", "V450","G550"],target="AirPressure",
                                                                                                                                                                                           developer_mode=developer_mode, forecast_steps=30, poly_degrees=2)
 
 project_end = datetime.datetime.now() - project_start
