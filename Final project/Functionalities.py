@@ -114,7 +114,7 @@ def polynomial_regression_projector(source_DF, features: [list, np.ndarray],
         "MAE": [mae_tracked],
         "MSE": [mse_tracked],
         "R squared": [r2_tracked]
-    })
+        })
     accuracy_tracking.to_csv("Polynomial_regression_accuracy_documented.csv")
     # - Return statements -
     return numpy_conversion(forecast_data), mae_tracked, mse_tracked, r2_tracked, end, model
