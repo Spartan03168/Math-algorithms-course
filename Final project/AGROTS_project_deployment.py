@@ -6,10 +6,14 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.linear_model import LinearRegression
+from Functionalities import linear_regression_projector
 
 # - Autodownload folder path -
 dl_path = r"C:\Users\Tomy\PycharmProjects\Math_algorithm_work\Final project\Saved_downloads\Recent"
 os.chdir(dl_path)
+# - Folder redirect protocols -
+folder_names = ["Diagnostics documented", "Baseline", "Expanded"]
+interal_loop_back_cd = os.getcwd()
 # - Behaviour modifiers -
 developer_mode = 1
 deploy_switch = 1
@@ -109,31 +113,30 @@ plt.close()
 # --------------------------
 # ----> Deployment <----
 if deploy_switch == 1:
-    model = LinearRegression()
-    # Features and target
-    X = source_dataframe[features]
-    y = source_dataframe["AirPressure"]
-    # Splitting
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    # Model fitting and forecasting
-    model.fit(X_train, y_train)
-    projection = model.predict(X_test)
-    r_squared = model.score(X_train, y_train)
-    coeff = model.coef_
+    os.mkdir(folder_names[0])
     if developer_mode == 1:
-        # Dual column readout of variables in features and coefficients
-        for variables in range(7):
-            pass
-        print(f"R squared of forecast: {r_squared}")
-    # Accuracy metrics
-    mse_tracked = mean_squared_error(y_test, projection)
-    mae_tracked = mean_absolute_error(y_test, projection)
-    r2_tracked = r_squared
+        print(f"Internal loopback directory: {interal_loop_back_cd}")
+    # - Diagnostics folder creation -
+    diagnostics_path = os.path.join(interal_loop_back_cd, folder_names[0])
+    os.makedirs(diagnostics_path, exist_ok=True)
+    baseline_path = os.path.join(diagnostics_path, folder_names[1])
+    os.makedirs(baseline_path, exist_ok=True)
+    extended_model = os.path.join(diagnostics_path, folder_names[2])
+    os.makedirs(extended_model, exist_ok=True)
+
+    # > Baseline <
+
+    baseline_projection, baseline_y_test, baseline_mae_tracked, baseline_mse_tracked, baseline_r2_tracked, baseline_end, baseline_model_applied = linear_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity"],
+                                                                                                                                                                              target="AirPressure", developer_mode=developer_mode)
+
+    # > Extended <
+
+    extended_projection, extended_y_test, extended_mae_tracked, extended_mse_tracked, extended_r2_tracked, extended_end, extended_model_applied = linear_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity", "B500", "V450","G550"],
+                                                                                                                                                                              target="AirPressure", developer_mode=developer_mode)
 
 
 project_end = datetime.datetime.now() - project_start
 # ---> Document the processing time <---
-"""
+
 if developer_mode == 1:
     print(f"Total processing time: {project_end}")
-"""
