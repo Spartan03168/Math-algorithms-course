@@ -121,22 +121,21 @@ if deploy_switch == 1:
     os.makedirs(diagnostics_path, exist_ok=True)
     baseline_path = os.path.join(diagnostics_path, folder_names[1])
     os.makedirs(baseline_path, exist_ok=True)
-    extended_model = os.path.join(diagnostics_path, folder_names[2])
-    os.makedirs(extended_model, exist_ok=True)
+    extended_path = os.path.join(diagnostics_path, folder_names[2])
+    os.makedirs(extended_path, exist_ok=True)
 
     # > Baseline <
-
+    os.chdir(baseline_path)
     baseline_projection, baseline_y_test, baseline_mae_tracked, baseline_mse_tracked, baseline_r2_tracked, baseline_end, baseline_model_applied = linear_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity"],
                                                                                                                                                                               target="AirPressure", developer_mode=developer_mode)
-
+    os.chdir(diagnostics_path)
     # > Extended <
-
+    os.chdir(extended_path)
     extended_projection, extended_y_test, extended_mae_tracked, extended_mse_tracked, extended_r2_tracked, extended_end, extended_model_applied = linear_regression_projector(source_DF=source_dataframe, features=["AirTemperatureA", "AirTemperatureB", "AirHumidity", "B500", "V450","G550"],
                                                                                                                                                                               target="AirPressure", developer_mode=developer_mode)
-
+    os.chdir(diagnostics_path)
 
 project_end = datetime.datetime.now() - project_start
 # ---> Document the processing time <---
-
 if developer_mode == 1:
     print(f"Total processing time: {project_end}")
