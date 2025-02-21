@@ -6,6 +6,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.linear_model import LinearRegression
+from Specialist_code import x_y_charter
 from Functionalities import linear_regression_projector, polynomial_regression_projector
 
 # - Autodownload folder path -
