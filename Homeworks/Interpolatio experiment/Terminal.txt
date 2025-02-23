@@ -1,0 +1,70 @@
+"C:\Users\Tomy\anaconda3\envs\Titan practice\python.exe" "C:\Users\Tomy\PycharmProjects\Math_algorithm_work\Homeworks\Interpolatio experiment\interpolation_experiment_SLE_Lagrange.py"
+Title: Interpolation of sin(x) on [0,4]
+Calculations in progress...
+Charting in progress...
+Charting process complete
+Current title processing completion
+
+Title: Interpolation of sin(3x) on [0,4]
+Calculations in progress...
+Charting in progress...
+Charting process complete
+Current title processing completion
+
+Title: Interpolation of sin(5x) on [0,4]
+Calculations in progress...
+Charting in progress...
+Charting process complete
+Current title processing completion
+
+Matrix A:
+[[1.1880596  0.32395665 0.37208322]
+ [0.21415183 1.38008536 0.6777455 ]
+ [0.30362396 0.57043032 1.93629435]]
+
+Known solution x_exact:
+[0.59720937 0.35721325 0.21069441]
+
+Right-hand side b:
+[0.90363779 0.76367544 0.79305873]
+
+Initial approximation x0:
+[0.12812689 0.83430257 0.23815565]
+Iteration 1: [0.45851757 0.         0.        ]
+Iteration 1: [0.45851757 0.48220428 0.        ]
+Iteration 1: [0.45851757 0.48220428 0.19561998]
+Iteration 2: [0.56784827 0.         0.        ]
+Iteration 2: [0.56784827 0.46523911 0.        ]
+Iteration 2: [0.56784827 0.46523911 0.18347411]
+Iteration 3: [0.5762782 0.        0.       ]
+Iteration 3: [0.5762782  0.46393102 0.        ]
+Iteration 3: [0.5762782  0.46393102 0.18253761]
+Iteration 4: [0.57692818 0.         0.        ]
+Iteration 4: [0.57692818 0.46383016 0.        ]
+Iteration 4: [0.57692818 0.46383016 0.1824654 ]
+Iteration 5: [0.5769783 0.        0.       ]
+Iteration 5: [0.5769783  0.46382238 0.        ]
+Iteration 5: [0.5769783  0.46382238 0.18245983]
+Iteration 6: [0.57698216 0.         0.        ]
+Iteration 6: [0.57698216 0.46382178 0.        ]
+Iteration 6: [0.57698216 0.46382178 0.1824594 ]
+Iteration 7: [0.57698246 0.         0.        ]
+Iteration 7: [0.57698246 0.46382174 0.        ]
+Iteration 7: [0.57698246 0.46382174 0.18245937]
+Iteration 8: [0.57698249 0.         0.        ]
+Iteration 8: [0.57698249 0.46382173 0.        ]
+Iteration 8: [0.57698249 0.46382173 0.18245937]
+Iteration 9: [0.57698249 0.         0.        ]
+Iteration 9: [0.57698249 0.46382173 0.        ]
+Iteration 9: [0.57698249 0.46382173 0.18245937]
+Iteration 10: [0.57698249 0.         0.        ]
+Iteration 10: [0.57698249 0.46382173 0.        ]
+Iteration 10: [0.57698249 0.46382173 0.18245937]
+
+Jacobi solution:
+[0.57698249 0.46382173 0.18245937]
+
+Exact Solution x:
+[0.59720937 0.35721325 0.21069441]
+
+Process finished with exit code 0
